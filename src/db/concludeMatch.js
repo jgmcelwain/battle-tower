@@ -1,6 +1,6 @@
 import mongodb from 'mongodb';
 
-import { DB_URL, DB_NAME } from './constants.js';
+import { DB_NAME } from './constants.js';
 import logger from '../logger.js';
 import getPlayer from './getPlayer.js';
 import updatePlayerRating from './updatePlayerRating.js';
@@ -11,7 +11,7 @@ export default async function concludeMatch([playerOne, playerTwo], result) {
   let client;
 
   try {
-    client = await MongoClient.connect(DB_URL);
+    client = await MongoClient.connect(process.env.MONGODB_URI);
     const db = client.db(DB_NAME);
 
     const matchesCollection = db.collection('matches');

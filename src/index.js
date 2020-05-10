@@ -5,8 +5,6 @@ import { vs, rating } from './commands/index.js';
 
 dotenv.config();
 
-console.log(process.env.DISCORD_CLIENT_TOKEN);
-
 const discordClient = new Discord.Client();
 
 async function main() {
@@ -40,6 +38,7 @@ async function main() {
             'warn',
             `${command} is not a recognised Battle Tower command`,
           );
+          break;
       }
     }
   });

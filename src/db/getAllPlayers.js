@@ -1,6 +1,6 @@
 import mongodb from 'mongodb';
 
-import { DB_URL, DB_NAME } from './constants.js';
+import { DB_NAME } from './constants.js';
 import logger from '../logger.js';
 
 const { MongoClient } = mongodb;
@@ -9,7 +9,7 @@ export default async function getAllPlayers() {
   let client;
 
   try {
-    client = await MongoClient.connect(DB_URL);
+    client = await MongoClient.connect(process.env.MONGODB_URI);
     const db = client.db(DB_NAME);
 
     const playersCollection = db.collection('players');

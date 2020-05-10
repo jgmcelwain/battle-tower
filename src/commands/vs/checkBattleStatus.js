@@ -1,4 +1,3 @@
-// import logger from '../../logger.js';
 import db from '../../db/index.js';
 import logger from '../../logger.js';
 
