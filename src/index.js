@@ -3,7 +3,9 @@ import Discord from 'discord.js';
 import logger from './logger.js';
 import { vs, rating } from './commands/index.js';
 
-dotenv.config();
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+}
 
 const discordClient = new Discord.Client();
 
