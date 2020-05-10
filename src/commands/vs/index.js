@@ -1,7 +1,7 @@
 import createChallenge from './createChallenge.js';
 import checkBattleStatus from './checkBattleStatus.js';
 
-export default async function vs(message, client) {
+export default async function vs(message) {
   const playerOne = message.author.id;
   const opponent = message.mentions.users.array()[0];
 
@@ -10,8 +10,7 @@ export default async function vs(message, client) {
   }
 
   const playerTwo = opponent.id;
-
-  if (playerTwo === client.user.id) {
+  if (playerTwo === message.client.user.id) {
     await message.reply('you cannot challenge me to a battle!');
 
     return;
@@ -32,5 +31,5 @@ export default async function vs(message, client) {
     return;
   }
 
-  createChallenge([playerOne, playerTwo], message, client);
+  createChallenge([playerOne, playerTwo], message);
 }
