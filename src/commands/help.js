@@ -4,6 +4,6 @@ export default async function help(message) {
 - \`!bfhelp\` - View this message
 - \`!vs @Player\` - Challenge a player to a battle
 - \`!rating\` - Get your current rating
-- \`!rating @Player\` - Get a pleyer's current rating
+- \`!rating @Player\` - Get a player's current rating
 `);
 }
