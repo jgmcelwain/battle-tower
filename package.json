@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "description": "Discord Bot for ELO rankings",
-  "main": "index.js",
+  "main": "src/index.js",
   "license": "MIT",
   "dependencies": {
     "discord.js": "^12.2.0",
