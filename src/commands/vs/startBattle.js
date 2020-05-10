@@ -9,8 +9,11 @@ export default async function startBattle(
 ) {
   logger.log('info', `Creating match between ${playerOne} and ${playerTwo}`);
 
+  // dispatch a create match request for the two players
   await db.CREATE_MATCH(playerOne, playerTwo);
 
+  // post the battleMesasage to the chat. this message will allow players to
+  // report the outcome or cancel the battle
   const battleMessage = await initialMessage.channel.send(
     `Battle Started!
 
@@ -20,11 +23,12 @@ ${EMOJIS.PLAYER_ONE} - <@${playerOne}> Wins
 ${EMOJIS.PLAYER_TWO} - <@${playerTwo}> Wins
 ${EMOJIS.CANCEL_BATTLE} - Cancel Battle`,
   );
-
   await battleMessage.react(EMOJIS.PLAYER_ONE);
   await battleMessage.react(EMOJIS.PLAYER_TWO);
   await battleMessage.react(EMOJIS.CANCEL_BATTLE);
 
+  // create a reaction collector that collects outcome or cancel reacts from
+  // both players
   const resultCollector = battleMessage.createReactionCollector(
     (reaction, user) =>
       [playerOne, playerTwo].includes(user.id) &&
@@ -35,9 +39,16 @@ ${EMOJIS.CANCEL_BATTLE} - Cancel Battle`,
   );
 
   resultCollector.on('collect', async () => {
-    const chosen = battleMessage.reactions.cache.find(
-      (react) => react.count === 3,
-    );
+    // check to see if a react has met the threshold for its action, which is
+    // when both playerOne and playerTwo have use the same reaction
+    const chosen = battleMessage.reactions.cache.find((react) => {
+      const usersThatReacted = react.users.cache.array().map((user) => user.id);
+
+      return (
+        usersThatReacted.includes(playerOne) &&
+        usersThatReacted.includes(playerTwo)
+      );
+    });
 
     if (chosen !== undefined) {
       battleMessage.delete();
