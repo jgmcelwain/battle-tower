@@ -19,7 +19,7 @@ export default async function updatePlayerRating(player, opponent, result) {
 
     logger.log(
       'info',
-      `${player.discordID} rating updated from ${player.rating} to ${newRating}`,
+      `Rating updated for player ${player.discordID} from ${player.rating} to ${newRating}`,
     );
 
     await playersCollection.updateOne(

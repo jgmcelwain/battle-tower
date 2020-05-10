@@ -23,8 +23,8 @@ export default async function finishBattle(players, result, initialMessage) {
     logger.log(
       'info',
       result === 'PLAYER_ONE'
-        ? `${players[0]} has beaten ${players[1]}`
-        : `${players[1]} has beaten ${players[0]}`,
+        ? `Result declared: ${players[0]} has beaten ${players[1]}`
+        : `Result declared: ${players[1]} has beaten ${players[0]}`,
     );
 
     const calculatingMessage = await initialMessage.channel.send(

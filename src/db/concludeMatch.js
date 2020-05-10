@@ -14,7 +14,12 @@ export default async function concludeMatch([playerOne, playerTwo], result) {
     const db = client.db(process.env.MONGODB_DB_NAME);
 
     const matchesCollection = db.collection('matches');
-    logger.log('info', 'Saving match result');
+
+    const match = matchesCollection.findOne({
+      players: { playerOne, playerTwo },
+    });
+    logger.log('info', `Saving result for match ${match._id}`);
+
     await matchesCollection.updateOne(
       { players: { playerOne, playerTwo } },
       { $set: { completed_at: Date.now(), result } },

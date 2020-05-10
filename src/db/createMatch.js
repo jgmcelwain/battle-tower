@@ -24,7 +24,7 @@ export default async function createMatch(playerOne, playerTwo) {
 
     logger.log(
       'info',
-      `Match created (${match._id}) between ${playerOne} and ${playerTwo}`,
+      `Match ${match._id} created between ${playerOne} and ${playerTwo}`,
     );
 
     return match;
