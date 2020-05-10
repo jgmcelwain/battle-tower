@@ -17,7 +17,7 @@ export default async function createChallenge([playerOne, playerTwo], message) {
   const challengeMessage = await message.channel.send(
     `<@${playerTwo}>, you have been challenged to a battle by <@${playerOne}>!
   
-    React to this message with a ${EMOJIS.ACCEPT_BATTLE} to accept.`,
+React to this message with a ${EMOJIS.ACCEPT_BATTLE} to accept.`,
   );
   await challengeMessage.react(EMOJIS.ACCEPT_BATTLE);
 
