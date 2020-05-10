@@ -1,0 +1,4 @@
+TODO
+- Block users from requesting a battle against a player that's already in a battle
+  - Store current battles in database?
+- commands in /commands dir

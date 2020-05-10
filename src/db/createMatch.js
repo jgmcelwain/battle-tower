@@ -1,0 +1,39 @@
+import mongodb from 'mongodb';
+
+import { DB_URL, DB_NAME } from './constants.js';
+import logger from '../logger.js';
+
+const { MongoClient } = mongodb;
+
+export default async function createMatch(playerOne, playerTwo) {
+  let client;
+
+  try {
+    client = await MongoClient.connect(DB_URL);
+    const db = client.db(DB_NAME);
+
+    const matchesCollection = db.collection('matches');
+
+    const record = await matchesCollection.insertOne({
+      players: { playerOne, playerTwo },
+      result: null,
+      started_at: Date.now(),
+      completed_at: null,
+    });
+
+    const match = record.ops[0];
+
+    logger.log(
+      'info',
+      `Match created (${match._id}) between ${playerOne} and ${playerTwo}`,
+    );
+
+    return match;
+  } catch (err) {
+    logger.log('error', err.message);
+
+    return err;
+  } finally {
+    client.close();
+  }
+}
