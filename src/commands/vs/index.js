@@ -2,11 +2,18 @@ import createChallenge from './createChallenge.js';
 import checkBattleStatus from './checkBattleStatus.js';
 
 export default async function vs(message) {
-  const playerOne = message.author.id;
-  const opponent = message.mentions.users.array()[0];
+  const mentionedUsers = message.mentions.users.array();
+  if (mentionedUsers.length === 0) {
+    message.reply('you need to @mention a user to challenge them to a battle.');
 
+    return;
+  }
+
+  const opponent = mentionedUsers[0];
   if (opponent === undefined) {
     message.reply('your battle could not be started - no opponent found.');
+
+    return;
   }
 
   const playerTwo = opponent.id;
@@ -16,6 +23,7 @@ export default async function vs(message) {
     return;
   }
 
+  const playerOne = message.author.id;
   if (playerOne === playerTwo) {
     await message.reply('you cannot challenge yourself to a battle!');
 
