@@ -38,7 +38,7 @@ async function main() {
         case '!rank':
           rating(message, discordClient);
           break;
-        case '!bfhelp':
+        case '!bthelp':
           help(message);
           break;
         default:
