@@ -82,6 +82,10 @@ ${EMOJIS.CANCEL_BATTLE} - Cancel Battle`,
       battleMessage.delete();
 
       finishBattle([playerOne, playerTwo], 'TIME_OUT', initialMessage);
+
+      initialMessage.channel.send(
+        `<@${playerOne}> & <@${playerTwo}>, your battle has expired`,
+      );
     }
   });
 }
