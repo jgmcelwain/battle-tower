@@ -41,11 +41,16 @@ ${EMOJIS.CANCEL_BATTLE} - Cancel Battle`,
     { time: 1000 * 60 * 30 },
   );
 
-  resultCollector.on('collect', async () => {
+  resultCollector.on('collect', async (reaction, user) => {
+    logger.log(
+      'info',
+      `Reaction ${reaction.emoji.name} added by ${user.id} to message ${reaction.message.id}`,
+    );
+
     // check to see if a react has met the threshold for its action, which is
     // when both playerOne and playerTwo have use the same reaction
     const chosen = battleMessage.reactions.cache.find((react) => {
-      const usersThatReacted = react.users.cache.array().map((user) => user.id);
+      const usersThatReacted = react.users.cache.array().map(({ id }) => id);
 
       return (
         usersThatReacted.includes(playerOne) &&

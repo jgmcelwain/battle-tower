@@ -29,7 +29,12 @@ React to this message with a ${EMOJIS.ACCEPT_BATTLE} to accept.`,
     { time: 1000 * 60 },
   );
 
-  challengeReactCollector.on('collect', () => {
+  challengeReactCollector.on('collect', (reaction, user) => {
+    logger.log(
+      'info',
+      `Reaction ${reaction.emoji.name} added by ${user.id} to message ${reaction.message.id}`,
+    );
+
     challengeMessage.delete();
 
     // if a react is collected then we can start the battle
