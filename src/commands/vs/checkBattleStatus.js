@@ -8,7 +8,7 @@ export default async function checkBattleStatus(players) {
     return currentBattle !== null;
   });
 
-  logger.log('info', `Fetching battle statuses for ${players.join(', ')}`);
+  logger.log('info', `Battle statuses requested for ${players.join(', ')}`);
   const result = await Promise.all(inBattleRequests);
 
   return result.includes(true);

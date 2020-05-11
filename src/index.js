@@ -11,10 +11,7 @@ const discordClient = new Discord.Client();
 
 async function main() {
   discordClient.on('ready', () => {
-    logger.log(
-      'info',
-      `Logged in as ${discordClient.user.tag} - waiting for messages`,
-    );
+    logger.log('info', `Bot logged in as ${discordClient.user.tag}`);
 
     discordClient.user.setActivity('Version 0.0.1', { type: 'PLAYING' });
   });
@@ -39,10 +36,6 @@ async function main() {
           help(message);
           break;
         default:
-          logger.log(
-            'warn',
-            `${command} is not a recognised Battle Tower command`,
-          );
           break;
       }
     }

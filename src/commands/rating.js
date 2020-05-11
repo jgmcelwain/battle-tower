@@ -11,7 +11,7 @@ export default async function rating(message) {
     player = message.author.id;
   }
 
-  logger.log('info', `Rating for player ${player} requested`);
+  logger.log('info', `Rating requested for player ${player}`);
 
   const result = await db.GET_PLAYER(player);
 

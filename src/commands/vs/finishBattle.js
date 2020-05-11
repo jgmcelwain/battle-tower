@@ -5,9 +5,9 @@ export default async function finishBattle(players, result, initialMessage) {
   if (result === 'CANCEL_BATTLE' || result === 'TIME_OUT') {
     logger.log(
       'info',
-      `Match between ${players.join(' and ')} ${
+      `Match ${
         result === 'CANCEL_BATTLE' ? 'was cancelled' : 'timed out'
-      }`,
+      } between ${players.join(' and ')}`,
     );
 
     await db.CONCLUDE_MATCH(players, result);
@@ -22,9 +22,10 @@ export default async function finishBattle(players, result, initialMessage) {
   } else {
     logger.log(
       'info',
-      result === 'PLAYER_ONE'
-        ? `Result declared: ${players[0]} has beaten ${players[1]}`
-        : `Result declared: ${players[1]} has beaten ${players[0]}`,
+
+      `Result declared for match between ${players[0]} and ${players[1]}, ${
+        players[result === 'PLAYER_ONE' ? 0 : 1]
+      } has won`,
     );
 
     const calculatingMessage = await initialMessage.channel.send(

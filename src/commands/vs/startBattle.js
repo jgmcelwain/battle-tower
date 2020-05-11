@@ -7,10 +7,13 @@ export default async function startBattle(
   [playerOne, playerTwo],
   initialMessage,
 ) {
-  logger.log('info', `Creating match between ${playerOne} and ${playerTwo}`);
-
   // dispatch a create match request for the two players
   await db.CREATE_MATCH(playerOne, playerTwo);
+
+  logger.log(
+    'info',
+    `Match created match between ${playerOne} and ${playerTwo}`,
+  );
 
   // post the battleMesasage to the chat. this message will allow players to
   // report the outcome or cancel the battle

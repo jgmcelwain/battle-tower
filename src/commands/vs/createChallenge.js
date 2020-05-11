@@ -37,7 +37,10 @@ React to this message with a ${EMOJIS.ACCEPT_BATTLE} to accept.`,
   });
   challengeReactCollector.on('end', () => {
     if (!challengeMessage.deleted) {
-      logger.log('info', `Challenge from ${playerOne} to ${playerTwo} expired`);
+      logger.log(
+        'info',
+        `Challenge created by ${playerOne} to ${playerTwo} expired`,
+      );
 
       challengeMessage.delete();
     }
