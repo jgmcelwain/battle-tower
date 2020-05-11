@@ -41,7 +41,7 @@ ${EMOJIS.CANCEL_BATTLE} - Cancel Battle`,
   resultCollector.on('collect', async (reaction, user) => {
     logger.log(
       'info',
-      `Reaction ${reaction.emoji.name} added by ${user.id} to message ${reaction.message.id}`,
+      `Reaction ${reaction.emoji.name}  added by ${user.id} to message ${reaction.message.id}`,
     );
 
     // check to see if a react has met the threshold for its action, which is

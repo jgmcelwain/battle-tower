@@ -32,7 +32,7 @@ React to this message with a ${EMOJIS.ACCEPT_BATTLE} to accept.`,
   challengeReactCollector.on('collect', (reaction, user) => {
     logger.log(
       'info',
-      `Reaction ${reaction.emoji.name} added by ${user.id} to message ${reaction.message.id}`,
+      `Reaction ${reaction.emoji.name}  added by ${user.id} to message ${reaction.message.id}`,
     );
 
     challengeMessage.delete();

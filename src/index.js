@@ -23,7 +23,10 @@ async function main() {
     ) {
       const [command] = message.content.split(' ');
 
-      logger.log('info', `${command} identified`);
+      logger.log(
+        'info',
+        `Command ${command} identified in message ${message.id} from user ${message.author.id}`,
+      );
 
       switch (command) {
         case '!vs':
