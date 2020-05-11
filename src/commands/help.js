@@ -3,7 +3,7 @@ export default async function help(message) {
   
 - \`!bfhelp\` - View this message
 - \`!vs @Player\` - Challenge a player to a battle
-- \`!rating\` - Get your current rating
-- \`!rating @Player\` - Get a player's current rating
+- \`!rating\`, \`!rank\` - Get your current rating and leaderboard rank
+- \`!rating @Player\`, \`!rank @Player\` - Get a player's current rating and leaderboard rank
 `);
 }

@@ -13,19 +13,23 @@ export default async function getPlayer(discordID) {
 
     const playersCollection = db.collection('players');
 
-    const playerRecord = await playersCollection.findOne({ discordID });
+    let player = await playersCollection.findOne({ discordID });
 
-    if (!playerRecord) {
+    if (!player) {
       const record = await playersCollection.insertOne({
         discordID,
         rating: 1600,
         latestDelta: 0,
       });
 
-      return record.ops[0];
+      [player] = record.ops;
     }
 
-    return playerRecord;
+    const playersCursor = playersCollection.find().sort({ rating: -1 });
+    const allPlayers = await playersCursor.toArray();
+    player.ranking = allPlayers.findIndex((p) => p.discordID === discordID) + 1;
+
+    return player;
   } catch (err) {
     logger.log('error', err.message);
 
