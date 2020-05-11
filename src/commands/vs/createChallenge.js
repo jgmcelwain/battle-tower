@@ -48,6 +48,8 @@ React to this message with a ${EMOJIS.ACCEPT_BATTLE} to accept.`,
       );
 
       challengeMessage.delete();
+
+      message.channel.send(`<@${playerOne}>, your challenge has expired`);
     }
   });
 }
