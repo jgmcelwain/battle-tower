@@ -6,7 +6,7 @@ import updatePlayerRating from './updatePlayerRating.js';
 
 const { MongoClient } = mongodb;
 
-export default async function concludeMatch([playerOne, playerTwo], result) {
+export default async function concludeMatch(match, result) {
   let client;
 
   try {
@@ -15,19 +15,17 @@ export default async function concludeMatch([playerOne, playerTwo], result) {
 
     const matchesCollection = db.collection('matches');
 
-    const match = matchesCollection.findOne({
-      players: { playerOne, playerTwo },
-    });
-    logger.log('info', `Saving result for match ${match._id}`);
-
     await matchesCollection.updateOne(
-      { players: { playerOne, playerTwo } },
+      { _id: match._id },
       { $set: { completed_at: Date.now(), result } },
     );
+    logger.log('info', `Result saved for match ${match._id}`);
 
     if (result === 'CANCEL_BATTLE') {
       return null;
     }
+
+    const { playerOne, playerTwo } = match.players;
 
     const currentPlayerOne = await getPlayer(playerOne);
     const currentPlayerTwo = await getPlayer(playerTwo);
