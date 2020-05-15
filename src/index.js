@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import Discord from 'discord.js';
 import logger from './logger.js';
-import { vs, rating, help } from './commands/index.js';
+import { vs, rating, setRating, help } from './commands/index.js';
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
@@ -40,6 +40,9 @@ async function main() {
           break;
         case '!bthelp':
           help(message);
+          break;
+        case '!set':
+          setRating(message);
           break;
         default:
           break;

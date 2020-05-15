@@ -17,11 +17,6 @@ export default async function updatePlayerRating(player, opponent, result) {
     const delta = Elo.getRatingDelta(player.rating, opponent.rating, result);
     const newRating = player.rating + delta;
 
-    logger.log(
-      'info',
-      `Rating updated for player ${player.discordID} from ${player.rating} to ${newRating}`,
-    );
-
     await playersCollection.updateOne(
       { discordID: player.discordID },
       {
@@ -30,6 +25,11 @@ export default async function updatePlayerRating(player, opponent, result) {
           latestDelta: delta,
         },
       },
+    );
+
+    logger.log(
+      'info',
+      `Rating updated for player ${player.discordID} from ${player.rating} to ${newRating}`,
     );
 
     return { ...player, rating: newRating, latestDelta: delta };
