@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import Discord from 'discord.js';
 import logger from './logger.js';
-import { vs, rating, setRating, help } from './commands/index.js';
+import { vs, rating, setRating, customMatch, help } from './commands/index.js';
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
