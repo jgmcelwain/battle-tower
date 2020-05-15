@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: ['airbnb-base'],
+  extends: ['airbnb-base', 'prettier'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -17,9 +17,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'no-underscore-dangle': 'off',
     'import/extensions': 'off',
-    'no-console': 'off',
-    'implicit-arrow-linebreak': 'off',
-    'operator-linebreak': 'off',
     'import/prefer-default-export': 'off',
+    'no-nested-ternary': 'off',
   },
 };
