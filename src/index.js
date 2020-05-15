@@ -44,6 +44,9 @@ async function main() {
         case '!set':
           setRating(message);
           break;
+        case '!customMatch':
+          customMatch(message);
+          break;
         default:
           break;
       }
