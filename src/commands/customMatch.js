@@ -23,6 +23,11 @@ export default async function customMatch(message) {
     return;
   }
 
+  // get the two players from the DB. this will create records for the player(s)
+  // if they do not exist
+  await db.GET_PLAYER(playerOne.id);
+  await db.GET_PLAYER(playerTwo.id);
+
   const result = message.content.includes(' p1')
     ? 'PLAYER_ONE'
     : message.content.includes(' p2')
