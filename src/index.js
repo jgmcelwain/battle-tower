@@ -23,11 +23,6 @@ async function main() {
     ) {
       const [command] = message.content.split(' ');
 
-      logger.log(
-        'info',
-        `Command ${command} identified in message ${message.id} from user ${message.author.id}`,
-      );
-
       const COMMANDS = {
         '!vs': vs,
         '!rank': rating,
@@ -38,6 +33,11 @@ async function main() {
       };
 
       if (COMMANDS[command]) {
+        logger.log(
+          'info',
+          `Command ${command} identified in message ${message.id} from user ${message.author.id}`,
+        );
+
         COMMANDS[command](message);
       }
     }
