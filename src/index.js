@@ -18,7 +18,7 @@ async function main() {
 
   discordClient.on('message', async (message) => {
     if (
-      message.channel.name === 'battle-tower' &&
+      process.env.CHANNEL_LIST.split(',').includes(message.channel.name) &&
       message.content.startsWith('!')
     ) {
       const [command] = message.content.split(' ');
