@@ -28,27 +28,17 @@ async function main() {
         `Command ${command} identified in message ${message.id} from user ${message.author.id}`,
       );
 
-      switch (command) {
-        case '!vs':
-          vs(message, discordClient);
-          break;
-        case '!rating':
-          rating(message, discordClient);
-          break;
-        case '!rank':
-          rating(message, discordClient);
-          break;
-        case '!bthelp':
-          help(message);
-          break;
-        case '!set':
-          setRating(message);
-          break;
-        case '!customMatch':
-          customMatch(message);
-          break;
-        default:
-          break;
+      const COMMANDS = {
+        '!vs': vs,
+        '!rank': rating,
+        '!rating': rating,
+        '!bthelp': help,
+        '!set': setRating,
+        '!customMatch': customMatch,
+      };
+
+      if (COMMANDS[command]) {
+        COMMANDS[command](message);
       }
     }
   });
