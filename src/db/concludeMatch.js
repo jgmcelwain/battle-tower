@@ -2,7 +2,7 @@ import mongodb from 'mongodb';
 
 import logger from '../logger.js';
 import getPlayer from './getPlayer.js';
-import updatePlayerRating from './updatePlayerRating.js';
+import processEloUpdate from './processEloUpdate.js';
 
 const { MongoClient } = mongodb;
 
@@ -30,12 +30,12 @@ export default async function concludeMatch(match, result) {
     const currentPlayerOne = await getPlayer(playerOne);
     const currentPlayerTwo = await getPlayer(playerTwo);
 
-    const updatedPlayerOne = await updatePlayerRating(
+    const updatedPlayerOne = await processEloUpdate(
       currentPlayerOne,
       currentPlayerTwo,
       result === 'PLAYER_ONE' ? 1 : 0,
     );
-    const updatedPlayerTwo = await updatePlayerRating(
+    const updatedPlayerTwo = await processEloUpdate(
       currentPlayerTwo,
       currentPlayerOne,
       result === 'PLAYER_TWO' ? 1 : 0,

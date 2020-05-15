@@ -5,7 +5,7 @@ import Elo from '../../lib/elo.js';
 
 const { MongoClient } = mongodb;
 
-export default async function updatePlayerRating(player, opponent, result) {
+export default async function processEloUpdate(player, opponent, result) {
   let client;
 
   try {
